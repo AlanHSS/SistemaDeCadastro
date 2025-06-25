@@ -1,4 +1,4 @@
-package com.example.SistemaDeCadastro;
+package com.example.SistemaDeCadastro.Pessoas;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
