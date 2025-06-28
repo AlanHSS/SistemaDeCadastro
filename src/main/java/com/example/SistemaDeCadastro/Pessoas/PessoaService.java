@@ -1,4 +1,4 @@
 package com.example.SistemaDeCadastro.Pessoas;
 
-public class PessoasService {
+public class PessoaService {
 }

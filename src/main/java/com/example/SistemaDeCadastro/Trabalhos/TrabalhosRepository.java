@@ -1,4 +1,7 @@
 package com.example.SistemaDeCadastro.Trabalhos;
 
-public interface TrabalhosRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TrabalhosRepository extends JpaRepository<TrabalhosModel, Long> {
+
 }
