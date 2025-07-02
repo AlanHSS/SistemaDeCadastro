@@ -1,9 +1,7 @@
 package com.example.SistemaDeCadastro.Trabalhos;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.SistemaDeCadastro.Pessoas.PessoaModel;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,8 +27,14 @@ public class TrabalhosController {
         return "Adicionar trabalho";
     }
 
+    //Procurar um trabalho por ID
+    @GetMapping("/exibirTrabalho/{id}")
+    public TrabalhosModel exibirPorID(@PathVariable Long id){
+        return trabalhosService.exibirTrabalhoPorID(id);
+    }
+
     //Exibir todos os trabalhos
-    @GetMapping("/todosTrabalhos")
+    @GetMapping("/exibirTodosTrabalhos")
     public List<TrabalhosModel> exibirTrabalhos(){
         return trabalhosService.exibirTodosTrabalhos();
     }

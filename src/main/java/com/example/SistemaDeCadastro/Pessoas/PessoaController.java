@@ -26,14 +26,14 @@ public class PessoaController {
         return "Adicionar funcionario";
     }
 
-    //Procurar um funcionários
-    @GetMapping("/buscarIDFuncionario")
-    public String buscar(){
-        return "Buscar funcionario";
+    //Procurar um funcionário por ID
+    @GetMapping("/exibirFuncionario/{id}")
+    public PessoaModel exibirPorID(@PathVariable Long id){
+        return pessoaService.exibirFuncionarioPorID(id);
     }
 
     //Exibir todos os funcionários
-    @GetMapping("/todosFuncionaris")
+    @GetMapping("/exibirFuncionarioTodos")
     public List<PessoaModel> exibirTodos(){
         return pessoaService.exibirTodosFuncionarios();
     }
