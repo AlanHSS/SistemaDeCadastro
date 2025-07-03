@@ -1,6 +1,7 @@
 package com.example.SistemaDeCadastro.Trabalhos;
 
 import com.example.SistemaDeCadastro.Pessoas.PessoaModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class TrabalhosModel {
     private int cargaHoraria;
 
     @OneToMany(mappedBy = "trabalhos")
+    @JsonIgnore
     private List<PessoaModel> pessoa;
 
 

@@ -25,7 +25,7 @@ public class PessoaModel {
     @Column(name = "Idade")
     private int idade;
 
-    @Column(unique = true, name = "E-mail")
+    @Column(unique = true, name = "Email")
     private String email;
 
     @ManyToOne
