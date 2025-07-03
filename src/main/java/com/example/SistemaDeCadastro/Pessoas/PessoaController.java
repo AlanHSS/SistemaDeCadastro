@@ -33,7 +33,7 @@ public class PessoaController {
     }
 
     //Exibir todos os funcionários
-    @GetMapping("/exibirTodosFuncionarios")
+    @GetMapping("/exibirFuncionarioTodos")
     public List<PessoaModel> exibirTodos(){
         return pessoaService.exibirTodosFuncionarios();
     }
