@@ -20,20 +20,20 @@ public class PessoaController {
         return "Homepage";
     }
 
-    //Adicionar um funcionários
+    //Adicionar um funcionários (http://localhost:8057/funcionarios/adicionarFuncionario)
     @PostMapping("/adicionarFuncionario")
-    public String adicionar(){
-        return "Adicionar funcionario";
+    public PessoaModel adicionarFuncionario(@RequestBody PessoaModel funcionario){
+        return pessoaService.adicionarFuncionario(funcionario);
     }
 
-    //Procurar um funcionário por ID
+    //Procurar um funcionário por ID (http://localhost:8057/funcionarios/exibirFuncionario/?)
     @GetMapping("/exibirFuncionario/{id}")
     public PessoaModel exibirPorID(@PathVariable Long id){
         return pessoaService.exibirFuncionarioPorID(id);
     }
 
-    //Exibir todos os funcionários
-    @GetMapping("/exibirFuncionarioTodos")
+    //Exibir todos os funcionários (http://localhost:8057/funcionarios/exibirTodosFuncionarios)
+    @GetMapping("/exibirTodosFuncionarios")
     public List<PessoaModel> exibirTodos(){
         return pessoaService.exibirTodosFuncionarios();
     }

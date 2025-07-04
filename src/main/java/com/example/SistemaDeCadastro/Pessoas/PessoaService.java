@@ -14,6 +14,11 @@ public class PessoaService {
         this.pessoaRepository = pessoaRepository;
     }
 
+    //Adicionar um funcionário
+    public PessoaModel adicionarFuncionario(PessoaModel funcionario){
+        return pessoaRepository.save(funcionario);
+    }
+
     //Exibir todos os funcionários
     public List<PessoaModel> exibirTodosFuncionarios(){
         return pessoaRepository.findAll();

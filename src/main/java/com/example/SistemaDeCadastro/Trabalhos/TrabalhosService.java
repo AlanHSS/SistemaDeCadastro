@@ -15,6 +15,11 @@ public class TrabalhosService {
         this.trabalhosRepository = trabalhosRepository;
     }
 
+    //Adicionar um trabalho
+    public TrabalhosModel adicionarTrbalho(TrabalhosModel trabalho){
+        return trabalhosRepository.save(trabalho);
+    }
+
     //Exibir todos os trabalhos
     public List<TrabalhosModel> exibirTodosTrabalhos(){
         return trabalhosRepository.findAll();

@@ -21,19 +21,19 @@ public class TrabalhosController {
         return "Tabela de Trabalhos";
     }
 
-    //Adicionar um trabalho
+    //Adicionar um trabalho (http://localhost:8057/trabalhos/adicionarTrabalho)
     @PostMapping("/adicionarTrabalho")
-    public String adicionar(){
-        return "Adicionar trabalho";
+    public TrabalhosModel adicionarTrabalho(@RequestBody TrabalhosModel trabalho){
+        return trabalhosService.adicionarTrbalho(trabalho);
     }
 
-    //Procurar um trabalho por ID
+    //Procurar um trabalho por ID (http://localhost:8057/trabalhos/exibirTrabalho/?)
     @GetMapping("/exibirTrabalho/{id}")
     public TrabalhosModel exibirPorID(@PathVariable Long id){
         return trabalhosService.exibirTrabalhoPorID(id);
     }
 
-    //Exibir todos os trabalhos
+    //Exibir todos os trabalhos (http://localhost:8057/trabalhos/exibirTodosTrabalhos)
     @GetMapping("/exibirTodosTrabalhos")
     public List<TrabalhosModel> exibirTrabalhos(){
         return trabalhosService.exibirTodosTrabalhos();
