@@ -30,4 +30,9 @@ public class TrabalhosService {
         Optional<TrabalhosModel> exibirPorID = trabalhosRepository.findById(id);
         return exibirPorID.orElse(null);
     }
+
+    //Deletar um trabalo
+    public void deletarTrabalhoPorID(Long id){
+        trabalhosRepository.deleteById(id);
+    }
 }

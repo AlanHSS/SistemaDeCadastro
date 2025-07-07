@@ -38,4 +38,10 @@ public class TrabalhosController {
     public List<TrabalhosModel> exibirTrabalhos(){
         return trabalhosService.exibirTodosTrabalhos();
     }
+
+    //Deletar um trabalho (http://localhost:8057/trabalhos/deletarTrabalho/?)
+    @DeleteMapping("/deletarTrabalho/{id}")
+    public void deletarPorID(@PathVariable Long id){
+        trabalhosService.deletarTrabalhoPorID(id);
+    }
 }

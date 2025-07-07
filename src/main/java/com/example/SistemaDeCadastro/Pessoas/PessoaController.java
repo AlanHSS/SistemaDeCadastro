@@ -44,10 +44,10 @@ public class PessoaController {
         return "Atualizar dados dos funcionários";
     }
 
-    //Deletar um funiconário
-    @DeleteMapping("/deletarIDFuncionario")
-    public String deletar(){
-        return "Deletar funcionário";
+    //Deletar um funiconário (http://localhost:8057/funcionarios/deletarFuncionario/?)
+    @DeleteMapping("/deletarFuncionario/{id}")
+    public void deletarPorID(@PathVariable Long id){
+        pessoaService.deletarFuncionarioPorID(id);
     }
 
 }

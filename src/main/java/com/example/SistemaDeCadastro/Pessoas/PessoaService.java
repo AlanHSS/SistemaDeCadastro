@@ -30,4 +30,9 @@ public class PessoaService {
         return exibirPorID.orElse(null);
     }
 
+    //Deletar um funiconário
+    public void deletarFuncionarioPorID(Long id){
+        pessoaRepository.deleteById(id);
+    }
+
 }
