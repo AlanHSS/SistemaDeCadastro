@@ -31,6 +31,15 @@ public class TrabalhosService {
         return exibirPorID.orElse(null);
     }
 
+    //Atualizar as informações de um trabalho
+    public TrabalhosModel atualizarTrabalhoPorID(Long id, TrabalhosModel trabalhoAtualizado){
+        if (trabalhosRepository.existsById(id)){
+            trabalhoAtualizado.setId(id);
+            return trabalhosRepository.save(trabalhoAtualizado);
+        }
+        return null;
+    }
+
     //Deletar um trabalo
     public void deletarTrabalhoPorID(Long id){
         trabalhosRepository.deleteById(id);

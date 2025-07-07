@@ -39,6 +39,12 @@ public class TrabalhosController {
         return trabalhosService.exibirTodosTrabalhos();
     }
 
+    //Atualizar as informações de um tabalho (http://localhost:8057/trabalhos/atualizarTrabalho/?)
+    @PutMapping("/atualizarTrabalho/{id}")
+    public TrabalhosModel atualizarTrabalho(@PathVariable Long id, @RequestBody TrabalhosModel trabalhoAtualizado){
+        return trabalhosService.atualizarTrabalhoPorID(id, trabalhoAtualizado);
+    }
+
     //Deletar um trabalho (http://localhost:8057/trabalhos/deletarTrabalho/?)
     @DeleteMapping("/deletarTrabalho/{id}")
     public void deletarPorID(@PathVariable Long id){

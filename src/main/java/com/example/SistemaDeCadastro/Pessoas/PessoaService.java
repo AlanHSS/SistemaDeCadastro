@@ -30,6 +30,15 @@ public class PessoaService {
         return exibirPorID.orElse(null);
     }
 
+    //Atualizar os dados de um funcionário
+    public PessoaModel atualizarFuncionarioPorID(Long id, PessoaModel funcionarioAtualizado){
+        if (pessoaRepository.existsById(id)){
+            funcionarioAtualizado.setId(id);
+            return pessoaRepository.save(funcionarioAtualizado);
+        }
+        return null;
+    }
+
     //Deletar um funiconário
     public void deletarFuncionarioPorID(Long id){
         pessoaRepository.deleteById(id);

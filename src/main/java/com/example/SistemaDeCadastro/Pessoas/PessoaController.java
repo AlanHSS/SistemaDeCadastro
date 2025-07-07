@@ -38,10 +38,10 @@ public class PessoaController {
         return pessoaService.exibirTodosFuncionarios();
     }
 
-    //Atualizar os dados de um funcionário
-    @PutMapping("/alterarIDFuncionario")
-    public String alterarDados(){
-        return "Atualizar dados dos funcionários";
+    //Atualizar os dados de um funcionário (http://localhost:8057/funcionarios/atualizarFuncionario/?)
+    @PutMapping("/atualizarFuncionario/{id}")
+    public PessoaModel atualizarFuncionario(@PathVariable Long id, @RequestBody PessoaModel funcionarioAtualizado){
+        return pessoaService.atualizarFuncionarioPorID(id, funcionarioAtualizado);
     }
 
     //Deletar um funiconário (http://localhost:8057/funcionarios/deletarFuncionario/?)
