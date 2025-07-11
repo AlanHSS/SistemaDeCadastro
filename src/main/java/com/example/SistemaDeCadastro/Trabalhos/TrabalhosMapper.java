@@ -1,5 +1,8 @@
 package com.example.SistemaDeCadastro.Trabalhos;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class TrabalhosMapper {
     public TrabalhosModel map(TrabalhosDTO trabalhosDTO){
         TrabalhosModel trabalhosModel = new TrabalhosModel();

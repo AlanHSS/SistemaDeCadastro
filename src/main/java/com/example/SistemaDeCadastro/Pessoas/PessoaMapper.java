@@ -1,5 +1,8 @@
 package com.example.SistemaDeCadastro.Pessoas;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PessoaMapper {
     public PessoaModel map(PessoaDTO pessoaDTO){
         PessoaModel pessoaModel = new PessoaModel();
