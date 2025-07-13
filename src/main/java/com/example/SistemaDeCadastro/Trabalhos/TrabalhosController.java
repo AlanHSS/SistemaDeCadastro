@@ -23,25 +23,25 @@ public class TrabalhosController {
 
     //Adicionar um trabalho (http://localhost:8057/trabalhos/adicionarTrabalho)
     @PostMapping("/adicionarTrabalho")
-    public TrabalhosModel adicionarTrabalho(@RequestBody TrabalhosModel trabalho){
-        return trabalhosService.adicionarTrbalho(trabalho);
+    public TrabalhosDTO adicionarTrabalho(@RequestBody TrabalhosDTO trabalho){
+        return trabalhosService.adicionarTrabalho(trabalho);
     }
 
     //Procurar um trabalho por ID (http://localhost:8057/trabalhos/exibirTrabalho/?)
     @GetMapping("/exibirTrabalho/{id}")
-    public TrabalhosModel exibirPorID(@PathVariable Long id){
+    public TrabalhosDTO exibirPorID(@PathVariable Long id){
         return trabalhosService.exibirTrabalhoPorID(id);
     }
 
     //Exibir todos os trabalhos (http://localhost:8057/trabalhos/exibirTodosTrabalhos)
     @GetMapping("/exibirTodosTrabalhos")
-    public List<TrabalhosModel> exibirTrabalhos(){
+    public List<TrabalhosDTO> exibirTrabalhos(){
         return trabalhosService.exibirTodosTrabalhos();
     }
 
-    //Atualizar as informações de um tabalho (http://localhost:8057/trabalhos/atualizarTrabalho/?)
+    //Atualizar as informações de um trabalho (http://localhost:8057/trabalhos/atualizarTrabalho/?)
     @PutMapping("/atualizarTrabalho/{id}")
-    public TrabalhosModel atualizarTrabalho(@PathVariable Long id, @RequestBody TrabalhosModel trabalhoAtualizado){
+    public TrabalhosDTO atualizarTrabalho(@PathVariable Long id, @RequestBody TrabalhosDTO trabalhoAtualizado){
         return trabalhosService.atualizarTrabalhoPorID(id, trabalhoAtualizado);
     }
 

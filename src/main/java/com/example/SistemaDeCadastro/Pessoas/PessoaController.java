@@ -22,25 +22,25 @@ public class PessoaController {
 
     //Adicionar um funcionários (http://localhost:8057/funcionarios/adicionarFuncionario)
     @PostMapping("/adicionarFuncionario")
-    public PessoaModel adicionarFuncionario(@RequestBody PessoaModel funcionario){
+    public PessoaDTO adicionarFuncionario(@RequestBody PessoaDTO funcionario){
         return pessoaService.adicionarFuncionario(funcionario);
     }
 
     //Procurar um funcionário por ID (http://localhost:8057/funcionarios/exibirFuncionario/?)
     @GetMapping("/exibirFuncionario/{id}")
-    public PessoaModel exibirPorID(@PathVariable Long id){
+    public PessoaDTO exibirPorID(@PathVariable Long id){
         return pessoaService.exibirFuncionarioPorID(id);
     }
 
     //Exibir todos os funcionários (http://localhost:8057/funcionarios/exibirTodosFuncionarios)
     @GetMapping("/exibirTodosFuncionarios")
-    public List<PessoaModel> exibirTodos(){
+    public List<PessoaDTO> exibirTodos(){
         return pessoaService.exibirTodosFuncionarios();
     }
 
     //Atualizar os dados de um funcionário (http://localhost:8057/funcionarios/atualizarFuncionario/?)
     @PutMapping("/atualizarFuncionario/{id}")
-    public PessoaModel atualizarFuncionario(@PathVariable Long id, @RequestBody PessoaModel funcionarioAtualizado){
+    public PessoaDTO atualizarFuncionario(@PathVariable Long id, @RequestBody PessoaDTO funcionarioAtualizado){
         return pessoaService.atualizarFuncionarioPorID(id, funcionarioAtualizado);
     }
 
