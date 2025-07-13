@@ -1,41 +1,53 @@
 package com.example.SistemaDeCadastro.Trabalhos;
 
+import com.example.SistemaDeCadastro.Pessoas.PessoaDTO;
 import com.example.SistemaDeCadastro.Pessoas.PessoaModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TrabalhosService {
 
     private TrabalhosRepository trabalhosRepository;
+    private TrabalhosMapper trabalhosMapper;
 
-    public TrabalhosService(TrabalhosRepository trabalhosRepository) {
+    public TrabalhosService(TrabalhosRepository trabalhosRepository, TrabalhosMapper trabalhosMapper) {
         this.trabalhosRepository = trabalhosRepository;
+        this.trabalhosMapper = trabalhosMapper;
     }
 
     //Adicionar um trabalho
-    public TrabalhosModel adicionarTrbalho(TrabalhosModel trabalho){
-        return trabalhosRepository.save(trabalho);
+    public TrabalhosDTO adicionarTrabalho(TrabalhosDTO trabalhosDTO){
+        TrabalhosModel trabalho = trabalhosMapper.map(trabalhosDTO);
+        trabalho = trabalhosRepository.save(trabalho);
+        return trabalhosMapper.map(trabalho);
     }
 
     //Exibir todos os trabalhos
-    public List<TrabalhosModel> exibirTodosTrabalhos(){
-        return trabalhosRepository.findAll();
+    public List<TrabalhosDTO> exibirTodosTrabalhos(){
+        List<TrabalhosModel> trabalhos = trabalhosRepository.findAll();
+        return trabalhos.stream()
+                .map(trabalhosMapper::map)
+                .collect(Collectors.toList());
     }
 
     //Procurar um trabalho por iD
-    public TrabalhosModel exibirTrabalhoPorID(Long id){
+    public TrabalhosDTO exibirTrabalhoPorID(Long id){
         Optional<TrabalhosModel> exibirPorID = trabalhosRepository.findById(id);
-        return exibirPorID.orElse(null);
+        return exibirPorID.map(trabalhosMapper::map).orElse(null);
     }
 
     //Atualizar as informações de um trabalho
-    public TrabalhosModel atualizarTrabalhoPorID(Long id, TrabalhosModel trabalhoAtualizado){
-        if (trabalhosRepository.existsById(id)){
+    public TrabalhosDTO atualizarTrabalhoPorID(Long id, TrabalhosDTO trabalhosDTO){
+        Optional<TrabalhosModel> trabalhoExistente = trabalhosRepository.findById(id);
+        if (trabalhoExistente.isPresent()){
+            TrabalhosModel trabalhoAtualizado = trabalhosMapper.map(trabalhosDTO);
             trabalhoAtualizado.setId(id);
-            return trabalhosRepository.save(trabalhoAtualizado);
+            TrabalhosModel trabalhoSave = trabalhosRepository.save(trabalhoAtualizado);
+            return trabalhosMapper.map(trabalhoSave);
         }
         return null;
     }
