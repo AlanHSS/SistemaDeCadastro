@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 @Service
 public class TrabalhosService {
 
-    private TrabalhosRepository trabalhosRepository;
-    private TrabalhosMapper trabalhosMapper;
+    private final TrabalhosRepository trabalhosRepository;
+    private final TrabalhosMapper trabalhosMapper;
 
     public TrabalhosService(TrabalhosRepository trabalhosRepository, TrabalhosMapper trabalhosMapper) {
         this.trabalhosRepository = trabalhosRepository;

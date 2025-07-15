@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 @Entity //transformando uma classe em uma entidade para ser usado no db
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Data //getters e setters usando lombok
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "trabalhos")
 public class PessoaModel {
 
     @Id
