@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Lista de Funcionários</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Sistema RH</h1>
+            <ul class="nav-links">
+                <li><a th:href="@{/index/homepage}">Home</a></li>
+                <li><a th:href="@{/index/exibirTodosFuncionarios}">Exibir Funcionários</a></li>
+                <li><a th:href="@{/trabalhos}">Exibir Trabalhos</a></li>
+                <li><a th:href="@{/index/adicionarFuncionario}">Adicionar Funcionário</a></li>
+                <li><a th:href="@{/trabalhos/novo}">Adicionar Trabalho</a></li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <h2>Lista de funcionarios</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Email</th>
+                <th>Trabalho</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each = "funcionario: ${funcionarios}">
+                <td th:text = "${funcionario.id}"></td>
+                <td th:text = "${funcionario.nome}"></td>
+                <td th:text = "${funcionario.idade}"></td>
+                <td th:text = "${funcionario.email}"></td>
+                <td>
+                    <span th:if="${funcionario.trabalhos}"> Cargo: <span th:text="${funcionario.trabalhos.cargo}"></span>, Carga Horária: <span th:text="${funcionario.trabalhos.cargaHoraria}"></span></span>
+                    <span th:if="${funcionario.trabalhos == null}">Funarionário sem trabalho</span>
+                </td>
+
+                <td>
+                    <a>Editar</a>
+                    <a th:href="@{/index/deletarFuncionario/{id}(id=${funcionario.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
