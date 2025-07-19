@@ -46,7 +46,22 @@ public class IndexControllerUi {
     @PostMapping("/salvar")
     public String salvarFuncionario(@ModelAttribute PessoaDTO funcioanrio, RedirectAttributes redirectAttributes){
         pessoaService.adicionarFuncionario(funcioanrio);
-        redirectAttributes.addFlashAttribute("mensagem", "Novo funcioário cadastrado com sucesso!");
+        redirectAttributes.addFlashAttribute("mensagem", "Funcionario cadastrado com sucesso!");
+        return "redirect:/index/exibirTodosFuncionarios";
+    }
+
+    //Editar funcionário existente
+    @GetMapping("/editarFuncionario/{id}")
+    public String editarFuncionario(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes, PessoaDTO funcionario){
+        model.addAttribute("funcionario", funcionario);
+        redirectAttributes.addFlashAttribute("mensagem", "alterar");
+        return "adicionarfuncionario";
+    }
+
+    @PostMapping("/alterar/{id}")
+    public String editarFuncionario(@PathVariable Long id, @ModelAttribute PessoaDTO funcioanrio, RedirectAttributes redirectAttributes){
+        pessoaService.atualizarFuncionarioPorID(id, funcioanrio);
+        redirectAttributes.addFlashAttribute("mensagem", "Dados alterados com sucesso!");
         return "redirect:/index/exibirTodosFuncionarios";
     }
 

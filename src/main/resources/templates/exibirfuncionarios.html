@@ -14,9 +14,9 @@
             <ul class="nav-links">
                 <li><a th:href="@{/index/homepage}">Home</a></li>
                 <li><a th:href="@{/index/exibirTodosFuncionarios}">Exibir Funcionários</a></li>
-                <li><a th:href="@{/trabalhos}">Exibir Trabalhos</a></li>
+                <li><a th:href="@{/index/exibirTodosTrabalhos}">Exibir Trabalhos</a></li>
                 <li><a th:href="@{/index/adicionarFuncionario}">Adicionar Funcionário</a></li>
-                <li><a th:href="@{/trabalhos/novo}">Adicionar Trabalho</a></li>
+                <li><a th:href="@{/index/adicionarTrabalho}">Adicionar Trabalho</a></li>
             </ul>
         </div>
     </nav>
@@ -47,7 +47,7 @@
                 </td>
 
                 <td>
-                    <a>Editar</a>
+                    <a th:href="@{/index/editarFuncionario/{id}(id=${funcionario.id})}">Editar</a>
                     <a th:href="@{/index/deletarFuncionario/{id}(id=${funcionario.id})}">Deletar</a>
                 </td>
             </tr>

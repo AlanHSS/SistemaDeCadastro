@@ -13,29 +13,31 @@
                 <ul class="nav-links">
                     <li><a th:href="@{/index/homepage}">Home</a></li>
                     <li><a th:href="@{/index/exibirTodosFuncionarios}">Exibir Funcionários</a></li>
-                    <li><a th:href="@{/trabalhos}">Exibir Trabalhos</a></li>
+                    <li><a th:href="@{/index/exibirTodosTrabalhos}">Exibir Trabalhos</a></li>
                     <li><a th:href="@{/index/adicionarFuncionario}">Adicionar Funcionário</a></li>
-                    <li><a th:href="@{/trabalhos/novo}">Adicionar Trabalho</a></li>
+                    <li><a th:href="@{/index/adicionarTrabalho}">Adicionar Trabalho</a></li>
                 </ul>
           </div>
     </nav>
 
     <main class="form-container">
-        <h2>Cadastrar Funcionário</h2>
 
-            <div th:if="${mensagem}" th:text="${mensagem}"></div>
-            <form th:action="@{/index/salvar}" th:object="${funcionario}" method="post" class="form-box">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" th:fiel="*{nome}" required>
 
-                <label for="idade">Idade:</label>
-                <input type="number" id="idade" name="idade" min="0" th:fiel="*{idade}" required>
+        <div th:if="${mensagem}" th:text="${mensagem}"></div>
+        <form th:action="${funcionario.id} != null ? @{/index/alterar/{id}(id=${funcionario.id})} : @{/index/salvar}" th:object="${funcionario}" method="post" class="form-box">
+            <h2 th:text="${funcionario.id} != null ? 'Editar Funcionário' : 'Cadastrar Funcionário'">Cadastrar Funcionário</h2>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" th:fiel="*{email}" required>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" th:fiel="*{nome}" required>
 
-                <button type="submit">Cadastrar Funcionário</button>
-            </form>
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" name="idade" min="0" th:fiel="*{idade}" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" th:fiel="*{email}" required>
+
+            <button type="submit" th:text="${funcionario.id} != null ? 'Atualizar funcionário' : 'Cadastrar funcionário'"></button>
+        </form>
     </main>
 
 </body>
