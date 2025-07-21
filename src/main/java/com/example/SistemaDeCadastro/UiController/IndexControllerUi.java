@@ -1,9 +1,8 @@
 package com.example.SistemaDeCadastro.UiController;
 import com.example.SistemaDeCadastro.Pessoas.PessoaDTO;
 import com.example.SistemaDeCadastro.Pessoas.PessoaService;
-import org.springframework.boot.Banner;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.example.SistemaDeCadastro.Trabalhos.TrabalhosDTO;
+import com.example.SistemaDeCadastro.Trabalhos.TrabalhosService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +15,11 @@ import java.util.List;
 public class IndexControllerUi {
 
     private final PessoaService pessoaService;
+    private final TrabalhosService trabalhosService;
 
-    public IndexControllerUi(PessoaService pessoaService) {
+    public IndexControllerUi(PessoaService pessoaService, TrabalhosService trabalhosService) {
         this.pessoaService = pessoaService;
+        this.trabalhosService = trabalhosService;
     }
 
     //Exibir Homepage
@@ -41,7 +42,6 @@ public class IndexControllerUi {
         model.addAttribute("funcionario", new PessoaDTO());
         return "adicionarfuncionario";
     }
-
     //Salvar novo funcionário
     @PostMapping("/salvar")
     public String salvarFuncionario(@ModelAttribute PessoaDTO funcioanrio, RedirectAttributes redirectAttributes){
@@ -57,7 +57,6 @@ public class IndexControllerUi {
         redirectAttributes.addFlashAttribute("mensagem", "alterar");
         return "adicionarfuncionario";
     }
-
     @PostMapping("/alterar/{id}")
     public String editarFuncionario(@PathVariable Long id, @ModelAttribute PessoaDTO funcioanrio, RedirectAttributes redirectAttributes){
         pessoaService.atualizarFuncionarioPorID(id, funcioanrio);
@@ -71,4 +70,52 @@ public class IndexControllerUi {
         pessoaService.deletarFuncionarioPorID(id);
         return "redirect:/index/exibirTodosFuncionarios";
     }
+
+
+
+
+
+    //Exibir todos os trabalhos
+    @GetMapping("/exibirTodosTrabalhos")
+    public String exibirTodosTrabalhos(Model model){
+        List<TrabalhosDTO> trabalhos = trabalhosService.exibirTodosTrabalhos();
+        model.addAttribute("trabalhos", trabalhos);
+        return "exibirtrabalhos";
+    }
+
+    //Adicionar funcionario
+    @GetMapping("/adicionarTrabalho")
+    public String adicionarTrabalho(Model model){
+        model.addAttribute("trabalho", new TrabalhosDTO());
+        return "adicionartrabalho";
+    }
+    //Salvar novo funcionário
+    @PostMapping("/salvarTrabalho")
+    public String salvarTrabalho(@ModelAttribute TrabalhosDTO trabalho, RedirectAttributes redirectAttributes){
+        trabalhosService.adicionarTrabalho(trabalho);
+        redirectAttributes.addFlashAttribute("mensagem", "Trabalho cadastrado com sucesso!");
+        return "redirect:/index/exibirTodosTrabalhos";
+    }
+
+    //Editar trabalho existente
+    @GetMapping("/editarTrabalho/{id}")
+    public String editarTrabalho(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes, TrabalhosDTO trabalho){
+        model.addAttribute("trabalho", trabalho);
+        redirectAttributes.addFlashAttribute("mensagem", "alterar");
+        return "adicionartrabalho";
+    }
+    @PostMapping("/alterarTrabalho/{id}")
+    public String editarTrabalho(@PathVariable Long id, @ModelAttribute TrabalhosDTO trabalho, RedirectAttributes redirectAttributes){
+        trabalhosService.atualizarTrabalhoPorID(id, trabalho);
+        redirectAttributes.addFlashAttribute("mensagem", "Dados alterados com sucesso!");
+        return "redirect:/index/exibirTodosTrabalhos";
+    }
+
+    //Deletar um trabalho
+    @GetMapping("/deletarTrabalho/{id}")
+    public String deletarTrabalhoPorID(@PathVariable Long id){
+        trabalhosService.deletarTrabalhoPorID(id);
+        return "redirect:/index/exibirTodosTrabalhos";
+    }
+
 }

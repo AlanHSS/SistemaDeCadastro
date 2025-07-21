@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Trabalho</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <h1 class="logo">Sistema RH</h1>
+    <ul class="nav-links">
+      <li><a th:href="@{/index/homepage}">Home</a></li>
+      <li><a th:href="@{/index/exibirTodosFuncionarios}">Exibir Funcionários</a></li>
+      <li><a th:href="@{/index/exibirTodosTrabalhos}">Exibir Trabalhos</a></li>
+      <li><a th:href="@{/index/adicionarFuncionario}">Adicionar Funcionário</a></li>
+      <li><a th:href="@{/index/adicionarTrabalho}">Adicionar Trabalho</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="form-container">
+
+
+  <div th:if="${mensagem}" th:text="${mensagem}"></div>
+  <form th:action="${trabalho.id} != null ? @{/index/alterarTrabalho/{id}(id=${trabalho.id})} : @{/index/salvarTrabalho}" th:object="${trabalho}" method="post" class="form-box">
+    <h2 th:text="${trabalho.id} != null ? 'Editar Trabalho' : 'Cadastrar Trabalho'"></h2>
+
+    <label for="cargo">Cargo:</label>
+    <input type="text" id="cargo" name="cargo" th:fiel="*{cargo}" required>
+
+    <label for="cargaHoraria">Carga Horária:</label>
+    <input type="number" id="cargaHoraria" name="cargaHoraria" min="0" th:fiel="*{cargaHoraria}" required>
+
+    <button type="submit" th:text="${trabalho.id} != null ? 'Atualizar trabalho' : 'Cadastrar trabalho'"></button>
+  </form>
+</main>
+
+</body>
+</html>

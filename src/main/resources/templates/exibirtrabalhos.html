@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Lista de Trabalhos</title>
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="container">
+        <h1 class="logo">Sistema RH</h1>
+        <ul class="nav-links">
+            <li><a th:href="@{/index/homepage}">Home</a></li>
+            <li><a th:href="@{/index/exibirTodosFuncionarios}">Exibir Funcionários</a></li>
+            <li><a th:href="@{/index/exibirTodosTrabalhos}">Exibir Trabalhos</a></li>
+            <li><a th:href="@{/index/adicionarFuncionario}">Adicionar Funcionário</a></li>
+            <li><a th:href="@{/index/adicionarTrabalho}">Adicionar Trabalho</a></li>
+        </ul>
+    </div>
+</nav>
+<br>
+<h2>Lista de trabalhos</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Cargo</th>
+        <th>Carga Horária</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each = "trabalho: ${trabalhos}">
+        <td th:text = "${trabalho.id}"></td>
+        <td th:text = "${trabalho.cargo}"></td>
+        <td th:text = "${trabalho.cargaHoraria}"></td>
+
+        <td>
+            <a th:href="@{/index/editarTrabalho/{id}(id=${trabalho.id})}">Editar</a>
+            <a th:href="@{/index/deletarTrabalho/{id}(id=${trabalho.id})}">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

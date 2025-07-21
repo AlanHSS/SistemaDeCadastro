@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Cadastrar Funcionário</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/botaosuspenso.css">
 </head>
 <body>
 
@@ -22,10 +23,9 @@
 
     <main class="form-container">
 
-
         <div th:if="${mensagem}" th:text="${mensagem}"></div>
         <form th:action="${funcionario.id} != null ? @{/index/alterar/{id}(id=${funcionario.id})} : @{/index/salvar}" th:object="${funcionario}" method="post" class="form-box">
-            <h2 th:text="${funcionario.id} != null ? 'Editar Funcionário' : 'Cadastrar Funcionário'">Cadastrar Funcionário</h2>
+            <h2 th:text="${funcionario.id} != null ? 'Editar Funcionário' : 'Cadastrar Funcionário'"></h2>
 
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" th:fiel="*{nome}" required>
@@ -37,7 +37,9 @@
             <input type="email" id="email" name="email" th:fiel="*{email}" required>
 
             <button type="submit" th:text="${funcionario.id} != null ? 'Atualizar funcionário' : 'Cadastrar funcionário'"></button>
+
         </form>
+
     </main>
 
 </body>
