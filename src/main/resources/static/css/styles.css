@@ -177,6 +177,13 @@ body {
     font-weight: 500;
 }
 
+.form-box select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
 .form-box input {
     padding: 10px;
     border: 1px solid #ccc;

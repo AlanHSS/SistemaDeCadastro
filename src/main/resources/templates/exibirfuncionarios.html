@@ -42,7 +42,7 @@
                 <td th:text = "${funcionario.idade}"></td>
                 <td th:text = "${funcionario.email}"></td>
                 <td>
-                    <span th:if="${funcionario.trabalhos}"> Cargo: <span th:text="${funcionario.trabalhos.cargo}"></span>, Carga Horária: <span th:text="${funcionario.trabalhos.cargaHoraria}"></span></span>
+                    <span th:if="${funcionario.trabalhos}"> Cargo: <span th:text="${funcionario.trabalhos.cargo}"></span>, Carga Horária: <span th:text="${funcionario.trabalhos.cargaHoraria}"></span>h</span>
                     <span th:if="${funcionario.trabalhos == null}">Funarionário sem trabalho</span>
                 </td>
 

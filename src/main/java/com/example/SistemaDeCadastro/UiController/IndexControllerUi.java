@@ -40,6 +40,7 @@ public class IndexControllerUi {
     @GetMapping("/adicionarFuncionario")
     public String adicionarFuncionario(Model model){
         model.addAttribute("funcionario", new PessoaDTO());
+        model.addAttribute("listaTrabalhos", trabalhosService.exibirTodosTrabalhos());
         return "adicionarfuncionario";
     }
     //Salvar novo funcionário
@@ -55,6 +56,7 @@ public class IndexControllerUi {
     public String editarFuncionario(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes, PessoaDTO funcionario){
         model.addAttribute("funcionario", funcionario);
         redirectAttributes.addFlashAttribute("mensagem", "alterar");
+        model.addAttribute("listaTrabalhos", trabalhosService.exibirTodosTrabalhos());
         return "adicionarfuncionario";
     }
     @PostMapping("/alterar/{id}")
@@ -117,5 +119,6 @@ public class IndexControllerUi {
         trabalhosService.deletarTrabalhoPorID(id);
         return "redirect:/index/exibirTodosTrabalhos";
     }
+
 
 }

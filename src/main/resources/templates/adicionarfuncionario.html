@@ -5,6 +5,7 @@
     <title>Cadastrar Funcionário</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/botaosuspenso.css">
+
 </head>
 <body>
 
@@ -35,6 +36,15 @@
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" th:fiel="*{email}" required>
+
+            <label for="trabalhos">Trabalho:</label>
+            <select id="trabalhos" name="trabalhos" th:field="*{trabalhos}" required>
+                <option value="" disabled selected>Selecione um trabalho para o funcionário</option>
+                <option th:each="trabalho : ${listaTrabalhos}"
+                        th:value="${trabalho.id}"
+                        th:text="${trabalho.cargo} + ' - ' + ${trabalho.cargaHoraria} + 'h'">
+                </option>
+            </select>
 
             <button type="submit" th:text="${funcionario.id} != null ? 'Atualizar funcionário' : 'Cadastrar funcionário'"></button>
 
