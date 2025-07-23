@@ -36,40 +36,39 @@ public class IndexControllerUi {
         return "exibirfuncionarios";
     }
 
-    //Adicionar funcionario
+    //Adicionar novo funcionario
     @GetMapping("/adicionarFuncionario")
     public String adicionarFuncionario(Model model){
         model.addAttribute("funcionario", new PessoaDTO());
         model.addAttribute("listaTrabalhos", trabalhosService.exibirTodosTrabalhos());
         return "adicionarfuncionario";
     }
-    //Salvar novo funcionário
     @PostMapping("/salvar")
     public String salvarFuncionario(@ModelAttribute PessoaDTO funcioanrio, RedirectAttributes redirectAttributes){
         pessoaService.adicionarFuncionario(funcioanrio);
-        redirectAttributes.addFlashAttribute("mensagem", "Funcionario cadastrado com sucesso!");
+        redirectAttributes.addFlashAttribute("mensagemSucesso", "Funcionario cadastrado com sucesso!");
         return "redirect:/index/exibirTodosFuncionarios";
     }
 
     //Editar funcionário existente
     @GetMapping("/editarFuncionario/{id}")
-    public String editarFuncionario(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes, PessoaDTO funcionario){
+    public String editarFuncionario(@PathVariable Long id, Model model, PessoaDTO funcionario){
         model.addAttribute("funcionario", funcionario);
-        redirectAttributes.addFlashAttribute("mensagem", "alterar");
         model.addAttribute("listaTrabalhos", trabalhosService.exibirTodosTrabalhos());
         return "adicionarfuncionario";
     }
     @PostMapping("/alterar/{id}")
     public String editarFuncionario(@PathVariable Long id, @ModelAttribute PessoaDTO funcioanrio, RedirectAttributes redirectAttributes){
         pessoaService.atualizarFuncionarioPorID(id, funcioanrio);
-        redirectAttributes.addFlashAttribute("mensagem", "Dados alterados com sucesso!");
+        redirectAttributes.addFlashAttribute("mensagemSucesso", "Dados alterados com sucesso!");
         return "redirect:/index/exibirTodosFuncionarios";
     }
 
     //Deletar um funcionário
     @GetMapping("/deletarFuncionario/{id}")
-    public String deletarPorID(@PathVariable Long id){
+    public String deletarPorID(@PathVariable Long id, RedirectAttributes redirectAttributes){
         pessoaService.deletarFuncionarioPorID(id);
+        redirectAttributes.addFlashAttribute("mensagemSucesso", "Funcionário excluído com sucesso.");
         return "redirect:/index/exibirTodosFuncionarios";
     }
 
@@ -85,40 +84,42 @@ public class IndexControllerUi {
         return "exibirtrabalhos";
     }
 
-    //Adicionar funcionario
+    //Adicionar novo trabalho
     @GetMapping("/adicionarTrabalho")
     public String adicionarTrabalho(Model model){
         model.addAttribute("trabalho", new TrabalhosDTO());
         return "adicionartrabalho";
     }
-    //Salvar novo funcionário
     @PostMapping("/salvarTrabalho")
     public String salvarTrabalho(@ModelAttribute TrabalhosDTO trabalho, RedirectAttributes redirectAttributes){
         trabalhosService.adicionarTrabalho(trabalho);
-        redirectAttributes.addFlashAttribute("mensagem", "Trabalho cadastrado com sucesso!");
+        redirectAttributes.addFlashAttribute("mensagemSucesso", "Trabalho cadastrado com sucesso!");
         return "redirect:/index/exibirTodosTrabalhos";
     }
 
     //Editar trabalho existente
     @GetMapping("/editarTrabalho/{id}")
-    public String editarTrabalho(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes, TrabalhosDTO trabalho){
+    public String editarTrabalho(@PathVariable Long id, Model model, TrabalhosDTO trabalho){
         model.addAttribute("trabalho", trabalho);
-        redirectAttributes.addFlashAttribute("mensagem", "alterar");
         return "adicionartrabalho";
     }
     @PostMapping("/alterarTrabalho/{id}")
     public String editarTrabalho(@PathVariable Long id, @ModelAttribute TrabalhosDTO trabalho, RedirectAttributes redirectAttributes){
         trabalhosService.atualizarTrabalhoPorID(id, trabalho);
-        redirectAttributes.addFlashAttribute("mensagem", "Dados alterados com sucesso!");
+        redirectAttributes.addFlashAttribute("mensagemSucesso", "Dados alterados com sucesso!");
         return "redirect:/index/exibirTodosTrabalhos";
     }
 
     //Deletar um trabalho
     @GetMapping("/deletarTrabalho/{id}")
-    public String deletarTrabalhoPorID(@PathVariable Long id){
-        trabalhosService.deletarTrabalhoPorID(id);
-        return "redirect:/index/exibirTodosTrabalhos";
+    public String deletarTrabalhoPorID(@PathVariable Long id, RedirectAttributes redirectAttributes){
+        if (pessoaService.temFuncionarioComTrabalho(id)) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Não é possível excluir: há funcionários com esse trabalho.");
+            return "redirect:/index/exibirTodosTrabalhos";
+        }
+            trabalhosService.deletarTrabalhoPorID(id);
+            redirectAttributes.addFlashAttribute("mensagemSucesso", "Trabalho excluído com sucesso.");
+            return "redirect:/index/exibirTodosTrabalhos";
     }
-
 
 }

@@ -5,6 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Sistema de Funcionários</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .main-content {
+            padding: 2rem;
+            font-family: Arial, sans-serif;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #e0f7fa, #ffffff);
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: #00796b;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-destaque {
+            background-color: #00796b;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-destaque:hover {
+            background-color: #004d40;
+        }
+
+        .funcionalidades {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: #fafafa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: #00796b;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -22,9 +99,32 @@
     </nav>
 
     <main class="main-content">
-        <h2>Bem-vindo ao Sistema de Gerenciamento de Funcionários</h2>
-        <p>Utilize o menu acima para navegar entre os cadastros de funcionários e trabalhos.</p>
+        <section class="hero">
+            <h2>Bem-vindo ao Sistema de Gerenciamento de Funcionários</h2>
+            <p>Gerencie com facilidade os funcionários da sua empresa e seus respectivos trabalhos.</p>
+            <a href="/index/adicionarFuncionario" class="btn-destaque">Cadastrar Novo Funcionário</a>
+        </section>
+
+        <section class="funcionalidades">
+            <div class="card">
+                <h3>👥 Funcionários</h3>
+                <p>Veja a lista completa de funcionários e edite suas informações com facilidade.</p>
+                <a href="/index/exibirTodosFuncionarios">Exibir Funcionários</a>
+            </div>
+            <div class="card">
+                <h3>🧰 Trabalhos</h3>
+                <p>Gerencie os cargos e cargas horárias disponíveis para sua equipe.</p>
+                <a href="/index/exibirTodosTrabalhos">Exibir Trabalhos</a>
+            </div>
+            <div class="card">
+                <h3>➕ Cadastro</h3>
+                <p>Adicione rapidamente novos funcionários ou funções ao sistema.</p>
+                <a href="/index/adicionarFuncionario">Adicionar Funcionário</a><br>
+                <a href="/index/adicionarTrabalho">Adicionar Trabalho</a>
+            </div>
+        </section>
     </main>
+
 
 </body>
 </html>

@@ -23,6 +23,14 @@
 <br>
 <h2>Lista de trabalhos</h2>
 
+    <div th:if="${mensagemErro}" class="mensagem-erro">
+        <p th:text="${mensagemErro}"></p>
+    </div>
+
+    <div th:if="${mensagemSucesso}" class="mensagem-sucesso">
+        <p th:text="${mensagemSucesso}"></p>
+    </div>
+
 <table>
     <thead>
     <tr>

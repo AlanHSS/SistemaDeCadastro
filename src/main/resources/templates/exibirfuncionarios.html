@@ -23,6 +23,10 @@
     <br>
     <h2>Lista de funcionarios</h2>
 
+    <div th:if="${mensagemSucesso}" class="mensagem-sucesso">
+        <p th:text="${mensagemSucesso}"></p>
+    </div>
+
     <table>
         <thead>
             <tr>

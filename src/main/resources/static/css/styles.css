@@ -79,6 +79,21 @@ td a:last-child:hover {
     background-color: #c0392b;
 }
 
+.mensagem-erro {
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #a94442;
+}
+
+.mensagem-sucesso {
+    background-color: #ddffdd;
+    border-left: 6px solid #4CAF50;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #3c763d;
+}
 
 
 /* HOMEPAGE */
@@ -150,7 +165,7 @@ body {
     color: #555;
 }
 
-/* ADICIONARFUNCIONARIO */
+/* ADICIONARFUNCIONARIO, FORMULARIO */
 .form-container {
     width: 100%;
     max-width: 500px;

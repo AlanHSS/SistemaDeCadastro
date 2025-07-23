@@ -55,4 +55,8 @@ public class PessoaService {
         pessoaRepository.deleteById(id);
     }
 
+    public boolean temFuncionarioComTrabalho(Long trabalhoId) {
+        return pessoaRepository.existsByTrabalhosId(trabalhoId);
+    }
+
 }
