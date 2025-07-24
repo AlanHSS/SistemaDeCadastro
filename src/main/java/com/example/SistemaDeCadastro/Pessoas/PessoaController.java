@@ -16,12 +16,6 @@ public class PessoaController {
         this.pessoaService = pessoaService;
     }
 
-    //Rota principal
-    @GetMapping("/boasvindas")
-    public String boasVindas(){
-        return "Homepage";
-    }
-
     //Adicionar um funcionários (http://localhost:8057/funcionarios/adicionarFuncionario)
     @PostMapping("/adicionarFuncionario")
     public ResponseEntity<String> adicionarFuncionario(@RequestBody PessoaDTO funcionario){

@@ -18,12 +18,6 @@ public class TrabalhosController {
         this.trabalhosService = trabalhosService;
     }
 
-    //Rota principal
-    @GetMapping("/trabalhostabela")
-    public String boasVindas(){
-        return "Tabela de Trabalhos";
-    }
-
     //Adicionar um trabalho (http://localhost:8057/trabalhos/adicionarTrabalho)
     @PostMapping("/adicionarTrabalho")
     public ResponseEntity<String> adicionarTrabalho(@RequestBody TrabalhosDTO trabalho){
